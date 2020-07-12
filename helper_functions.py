@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import sympy
+
 # from sympy import primerange, isprime
 
 
@@ -26,7 +27,7 @@ def n_first_primes(n):
     Return first n prime numbers.
     """
     nth_prime = sympy.prime(n)
-    primes_gen = sympy.primerange(1, nth_prime+1)
+    primes_gen = sympy.primerange(1, nth_prime + 1)
     primes_lst = [num for num in primes_gen]
 
     return primes_lst
