@@ -83,11 +83,17 @@ def updatefig(*args):
     Updates figure with new a
     """
     global a, i
-    a = next_step(a)
-    im.set_array(a)
-    i += 1
-    i_text.set_text(i_template % i)
+    if not pause:
+        a = next_step(a)
+        im.set_array(a)
+        i += 1
+        i_text.set_text(i_template % i)
     return (im, i_text)
+
+
+def onClick(event):
+    global pause
+    pause ^= True
 
 
 if __name__ == "__main__":
@@ -95,11 +101,13 @@ if __name__ == "__main__":
 
     #########################
     fig = plt.figure()
+    pause = False
 
     im = plt.imshow(a, cmap="Greys", animated=True)
     i = 1
     i_template = "i = %d"
     i_text = plt.text(-0.3, -0.3, "", fontsize=15)
 
-    ani = animation.FuncAnimation(fig, updatefig, interval=100, blit=True)
+    fig.canvas.mpl_connect("button_press_event", onClick)
+    ani = animation.FuncAnimation(fig, updatefig, interval=200, blit=True)
     plt.show()
