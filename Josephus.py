@@ -62,14 +62,20 @@ def get_diffs_of_each_round(players_list: list):
 
 def plot_winners(game_range: range):
     global winners
-    fig = plt.figure()
+    plt.figure()
     plt.title("winners of game")
     plt.xlabel("number of players")
     plt.ylabel("number of winner")
 
     plt.scatter(list(game_range), winners, s=4)
     x_lines = [num for num in game_range if math.log2(num).is_integer()]
-    plt.vlines(x_lines, ymin=0, ymax=max(winners), linestyles="dashed", label="x")
+    plt.vlines(
+        x_lines,
+        ymin=0,
+        ymax=max(winners),
+        linestyles="dashed",
+        label="x"
+        )
     plt.show()
 
 
@@ -88,11 +94,10 @@ if __name__ == "__main__":
     plot_winners(game_range)
 
     """
-    Results: 
+    Results:
     The differences increase each round in the power of 2:
     2, 4, 8, 16
 
     For even number of players:
     - 2, 3... and changing (1, or 5)
     """
-
