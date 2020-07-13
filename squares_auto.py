@@ -1,6 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
+import math
+from itertools import cycle
 from typing import Tuple, List
 
 # https://stackoverflow.com/questions/38965410/how-to-show-image-sequences-as-video-clip-on-python
@@ -88,6 +90,8 @@ def updatefig(*args):
         im.set_array(a)
         i += 1
         i_text.set_text(i_template % i)
+        if i > 7 and math.log2(i).is_integer():
+            im.set_cmap(next(colors_pool))
     return (im, i_text)
 
 
@@ -102,6 +106,9 @@ if __name__ == "__main__":
     #########################
     fig = plt.figure()
     pause = False
+
+    colors = ['Purples', 'Blues', 'Greens', 'Oranges', 'Reds', 'Greys']
+    colors_pool = cycle(colors)
 
     im = plt.imshow(a, cmap="Greys", animated=True)
     i = 1
