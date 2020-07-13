@@ -68,12 +68,15 @@ def plot_winners(game_range: range):
     plt.ylabel("number of winner")
 
     plt.scatter(list(game_range), winners, s=4)
+    plt.ylim(0, max(winners)*1.1)
+    plt.xlim(0, len(winners)*1.1)
     x_lines = [num for num in game_range if math.log2(num).is_integer()]
     plt.vlines(
         x_lines,
-        ymin=0,
-        ymax=max(winners),
+        ymin = 0,
+        ymax = max(winners),
         linestyles="dashed",
+        linewidth=1,
         label="x"
         )
     plt.show()
@@ -81,11 +84,11 @@ def plot_winners(game_range: range):
 
 if __name__ == "__main__":
     winners = []
-    game_range = range(1, 500)
+    game_range = range(1, 550)
     for n in game_range:
         winner_i, list_of_killed = play(n)
-        winners.append(winner_i)
-        print(f"{n} players\twinner:\tplayer {winner_i+1}")
+        winners.append(winner_i+1)
+        # print(f"{n} players\twinner:\tplayer {winner_i+1}")
         # print(f'Killed: {list_of_killed}')
 
         # print_first_of_each_round(list_of_killed)
