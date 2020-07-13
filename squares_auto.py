@@ -100,21 +100,25 @@ def onClick(event):
     pause ^= True
 
 
-if __name__ == "__main__":
-    a = initiate_array()
-
-    #########################
+def init_animation():
+    global fig, im, i, pause, colors_pool, i_template, i_text
     fig = plt.figure()
-    pause = False
-
-    colors = ['Purples', 'Blues', 'Greens', 'Oranges', 'Reds', 'Greys']
-    colors_pool = cycle(colors)
-
     im = plt.imshow(a, cmap="Greys", animated=True)
+    colors = ['Purples', 'Blues', 'Oranges', 'Greens', 'Reds', 'Greys']
+    colors_pool = cycle(colors)
+    
     i = 1
     i_template = "i = %d"
     i_text = plt.text(-0.3, -0.3, "", fontsize=15)
 
+    pause = False
     fig.canvas.mpl_connect("button_press_event", onClick)
+
+
+if __name__ == "__main__":
+    a = initiate_array()
+
+    init_animation()
+    
     ani = animation.FuncAnimation(fig, updatefig, interval=200, blit=True)
     plt.show()
