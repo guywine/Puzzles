@@ -45,8 +45,10 @@ def plot_h_dist(n: int = 1000, shape="circle"):
         hs.append(dart_h(r0, shape))
 
     plt.figure(1)
-    plt.text(0, 18_000, f'mean={np.mean(hs):.2f}')
-    plt.hist(hs, bins=100)
+    bin_values, _, _ = plt.hist(hs, bins=100)
+    y_max = max(bin_values)
+    plt.text(0.05, y_max*0.95, f'mean={np.mean(hs):.5f}')
+    plt.xlim(left=0)
     plt.title('Distribution of distance from center')
     plt.xlabel("h (dist from center)")
     plt.ylabel('number of appearances')
@@ -75,7 +77,7 @@ def play_game(r0: float, shape: str):
 def display_results(scores: list, shape: str):
     mean = sum(scores) / len(scores)
     std = statistics.pstdev(scores)
-    print(f"{shape}: Average = {mean}\tstd = {std:.2f}\n")
+    print(f"{shape}: Average = {mean}\tstd = {std:.5f}\n")
 
 
 def play_many(r0: float, shape: str, n: int):
@@ -86,21 +88,22 @@ def play_many(r0: float, shape: str, n: int):
     return scores
 
 
+def play_squares_and_circles(r0, i_games: int):
+    print(f'Playing {i_games} games, with r0 : {r0}\n')
+
+    scores_square = play_many(r0, 'square', i_games)
+    display_results(scores_square, 'square')
+
+    scores_circle = play_many(r0, 'circle', i_games)
+    display_results(scores_circle, 'circle')
+
 if __name__ == "__main__":
     r0 = 100
     i_games = 1_000_000
 
-    # play_games()
+    # play_squares_and_circles(r0, i_games)
 
-    print(f'Playing {i_games} games, with r0 : {r0}\n')
-
-    # scores_square = play_many(r0, 'square', i_games)
-    # display_results(scores_square, 'square')
-
-    # scores_circle = play_many(r0, 'circle', i_games)
-    # display_results(scores_circle, 'circle')
-
-    plot_h_dist(1_000_000, shape="circle")
+    plot_h_dist(10_000_000, shape='circle')
 
     """
     results:
