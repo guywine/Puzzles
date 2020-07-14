@@ -16,6 +16,14 @@ def initiate_array():
     arr[1, 1] = 1
     return arr
 
+def initiate_array_other():
+    arr = np.zeros((5, 5))
+    arr[1, 1] = 1
+    arr[1, 3] = 1
+    arr[3, 1] = 1
+    arr[3, 3] = 1
+    return arr
+
 
 def inflate_array(arr: np.array):
     """
@@ -117,6 +125,7 @@ def init_animation():
 
 if __name__ == "__main__":
     a = initiate_array()
+    # a = initiate_array_other()
 
     init_animation()
     

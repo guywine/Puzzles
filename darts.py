@@ -103,7 +103,7 @@ if __name__ == "__main__":
 
     # play_squares_and_circles(r0, i_games)
 
-    plot_h_dist(10_000_000, shape='circle')
+    plot_h_dist(10_000_000, shape='square')
 
     """
     results:
