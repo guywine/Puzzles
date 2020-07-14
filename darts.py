@@ -6,6 +6,7 @@ uniform random darts throw, each throw decreases radius of target
 import random as rand
 import statistics
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 def define_params():
@@ -43,9 +44,12 @@ def plot_h_dist(n: int = 1000, shape="circle"):
     for i in range(n):
         hs.append(dart_h(r0, shape))
 
-    fig = plt.figure(1)
-    plt.hist(hs, bins=100, density=True)
+    plt.figure(1)
+    plt.text(0, 18_000, f'mean={np.mean(hs):.2f}')
+    plt.hist(hs, bins=100)
+    plt.title('Distribution of distance from center')
     plt.xlabel("h (dist from center)")
+    plt.ylabel('number of appearances')
     plt.show()
 
 
@@ -79,7 +83,6 @@ def play_many(r0: float, shape: str, n: int):
     for i in range(i_games):
         score = play_game(r0, shape)
         scores.append(score)
-    
     return scores
 
 
@@ -87,19 +90,20 @@ if __name__ == "__main__":
     r0 = 100
     i_games = 1_000_000
 
+    # play_games()
+
     print(f'Playing {i_games} games, with r0 : {r0}\n')
 
-    scores_square = play_many(r0, 'square', i_games)
-    display_results(scores_square, 'square')
+    # scores_square = play_many(r0, 'square', i_games)
+    # display_results(scores_square, 'square')
 
-    scores_circle = play_many(r0, 'circle', i_games)
-    display_results(scores_circle, 'circle')
+    # scores_circle = play_many(r0, 'circle', i_games)
+    # display_results(scores_circle, 'circle')
 
-    # plot_h_dist(1_000_000, shape="circle")
+    plot_h_dist(1_000_000, shape="circle")
 
     """
     results:
     square: Average = 2.194      std = 0.91
     circle: Average = 2.718      std = 0.88
     """
-
