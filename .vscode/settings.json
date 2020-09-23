@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "/anaconda3/envs/envi_1/bin/python",
+    "python.pythonPath": "/Users/guyweintraub/opt/anaconda3/bin/python",
     "python.testing.pytestArgs": [
         "."
     ],
