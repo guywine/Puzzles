@@ -32,5 +32,5 @@ def bernouli_tests(chance: float):
     range_of_tests, chance_of_positive = compute_chances(chance)
     plot_bernouli(range_of_tests, chance_of_positive, chance)
 
-bernouli_tests(chance = 1 / 16)
+bernouli_tests(chance = 1 / 12)
 
