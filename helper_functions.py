@@ -1,5 +1,7 @@
 import matplotlib.pyplot as plt
 import sympy
+import random
+import pandas as pd 
 
 # from sympy import primerange, isprime
 
@@ -31,3 +33,29 @@ def n_first_primes(n):
     primes_lst = [num for num in primes_gen]
 
     return primes_lst
+
+def random_partition(l:list, p:int):
+    '''
+    Randomly partitions list to p equal length lists
+    '''
+    random.shuffle(l)
+    return [l[i::p] for i in range(p)]
+
+def random_partition_range(start: int, end:int, p:int, sort:bool=False):
+    l = list(range(start,end+1))
+    list_of_lists = random_partition(l, p)
+    if sort:
+        for l in list_of_lists:
+            l.sort()
+    return list_of_lists
+
+
+if __name__=='__main__':
+    l = list(range(1,121))
+    # a = random_partition(l,4)
+    [a,b,c,d] = random_partition_range(1,120,4, sort = True)
+    list_of_lists = random_partition_range(1,120,4, sort = False)
+
+    cond_df = pd.DataFrame({'pgl-1 his':a, 'pgl-1 cont.':b,'pgl-3 his':c, 'pgl-3 cont.':d})
+    cond_df.to_csv('Guy_Itai_exp.csv')
+
