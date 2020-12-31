@@ -4,7 +4,7 @@ from fractions import Fraction
 
 
 def compute_chances(chance: float):
-    range_of_tests = range(10, 60)
+    range_of_tests = range(30, 200)
     chance_of_finding = []
     for i in range_of_tests:
         chance_i = 1 - (1 - chance) ** i  # chance to have that many negatives
@@ -32,5 +32,5 @@ def bernouli_tests(chance: float):
     range_of_tests, chance_of_positive = compute_chances(chance)
     plot_bernouli(range_of_tests, chance_of_positive, chance)
 
-bernouli_tests(chance = 1 / 12)
+bernouli_tests(chance = 1 / 64)
 

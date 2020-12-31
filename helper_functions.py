@@ -53,9 +53,9 @@ def random_partition_range(start: int, end:int, p:int, sort:bool=False):
 if __name__=='__main__':
     l = list(range(1,121))
     # a = random_partition(l,4)
-    [a,b,c,d] = random_partition_range(1,120,4, sort = True)
-    list_of_lists = random_partition_range(1,120,4, sort = False)
+    [a,b,c,d] = random_partition_range(1,88,4, sort = True)
+    # list_of_lists = random_partition_range(1,120,4, sort = False)
 
     cond_df = pd.DataFrame({'pgl-1 his':a, 'pgl-1 cont.':b,'pgl-3 his':c, 'pgl-3 cont.':d})
-    cond_df.to_csv('Guy_Itai_exp.csv')
+    cond_df.to_csv('Guy_Itai_exp1.csv')
 
